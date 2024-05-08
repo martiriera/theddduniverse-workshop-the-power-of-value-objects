@@ -1,19 +1,23 @@
+import { Password } from "./Password";
+
 export class Advertisement {
 
   constructor(
     private readonly _id: string,
     private _description: string,
-    private _password: string,
+    private _password: Password,
     private _date: Date
   ) {
   }
 
-  public update(description: string): void {
+  public update(description: string, password: Password): void {
+    this._password = password;
     this._description = description;
     this.updateDate();
   }
 
-  public renew(): void {
+  public renew(password: Password): void {
+    this._password = password;
     this.updateDate();
   }
 
@@ -25,7 +29,7 @@ export class Advertisement {
     return this._description
   }
 
-  public password(): string {
+  public password(): Password {
     return this._password
   }
 
