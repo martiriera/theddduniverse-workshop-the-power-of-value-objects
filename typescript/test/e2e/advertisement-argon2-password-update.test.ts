@@ -75,7 +75,6 @@ describe("Advertisement Argon2 passwords", () => {
 
         expect(response.statusCode).toBe(200);
         expect(response.body).toBeUndefined;
-
         const dbData = await connection.query("SELECT * FROM advertisements") as any[]
 
         expect(isAnArgon2Password(dbData)).toBe(true);
@@ -96,5 +95,5 @@ async function withAnAdvertisementWithAMd5PasswordCreated(): Promise<void> {
 }
 
 function isAnArgon2Password(dbData: any[]): boolean {
-    return dbData[0].password.startsWith('$argon2i$');
+    return dbData[0].password.startsWith('$argon2id$');
 }
